@@ -1,0 +1,17 @@
+body {
+  background: #ffffff;
+  font-family: Ubuntu, sans-serif;
+  color: #2d2d2d;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.root {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 968px; 
+}

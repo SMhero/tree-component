@@ -1,0 +1,42 @@
+{
+  "compileOnSave": true,
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "esModuleInterop": true
+    }
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "experimentalDecorators": true,
+    "jsx": "react-jsx",
+    "lib": ["es2017", "es7", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceRoot": "/",
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./dist",
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "paths": {
+      "*": ["node_modules/@types", "./types/*"],
+      "api/*": ["./api/*"],
+      "components/*": ["./components/*"],
+      "forms/*": ["./forms/*"],
+      "hooks/*": ["./hooks/*"],
+      "typings/*": ["./typings/*"],
+      "utils/*": ["./utils/*"],
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}
