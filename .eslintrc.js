@@ -2,6 +2,8 @@ module.exports = {
   extends: [
     "airbnb",
     "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
     "plugin:css-modules/recommended",
     "plugin:@typescript-eslint/recommended",
   ],
@@ -15,11 +17,12 @@ module.exports = {
     },
   },
   rules: {
+    "no-shadow": 0,
     quotes: 0,
     "implicit-arrow-linebreak": 0,
     "no-param-reassign": 0,
     "no-confusing-arrow": 0,
-    "arrow-parens": [2, "as-needed", { requireForBlockBody: true }],
+    "arrow-parens": [0, "as-needed", { requireForBlockBody: true }],
     curly: [2, "all"],
     "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 1 }],
     "css-modules/no-undef-class": [2, { camelCase: "dashes" }],
@@ -34,6 +37,8 @@ module.exports = {
       },
     ],
     "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
     "max-len": ["warn", { code: 80, tabWidth: 4 }],
     "no-plusplus": 0,
     "object-curly-newline": [

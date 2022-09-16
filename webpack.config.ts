@@ -15,7 +15,7 @@ const performance = {
 module.exports = {
   devtool,
   entry: path.join(sourcePath, "index"),
-  mode: mode,
+  mode,
   target: "web",
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
@@ -55,8 +55,15 @@ module.exports = {
         ],
       },
       {
-        test: /\.jpe?g$|\.gif$|\.png$|\.svg$/,
-        use: ["file-loader?name=img/[name].[ext]"],
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "images/[hash]-[name].[ext]",
+            },
+          },
+        ],
       },
     ],
   },

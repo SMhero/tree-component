@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.label {
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+
+.input {
+  height: 24px;
+}

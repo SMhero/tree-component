@@ -1,0 +1,19 @@
+.root {
+  padding: 0 16px;
+}
+
+.title {
+  color: #000000;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 0;
+}
+
+.tree {
+  margin-top: 16px;
+  overflow-y: scroll;
+}
+
+.preload {
+  margin-bottom: 16px;
+}

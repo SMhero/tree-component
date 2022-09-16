@@ -1,0 +1,54 @@
+.root {
+  color: #000000;
+  padding: 8px 4px;
+  transition: background-color .16s ease-in-out;
+}
+
+.root-selected {
+  background-color: #f0f0f0;
+}
+
+.highlighted {
+  animation: highlight 1s ease-in-out;
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  cursor: pointer;
+  display: inline;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+.level {
+  padding-left: 16px;
+}
+
+.button {
+  background: none;
+  border: 0;
+}
+
+.icon {
+  transform: rotateZ(-180deg);
+  transition: transform .16s ease-in-out;
+}
+
+.icon-selected  {
+  transform: rotateZ(0deg);
+}
+
+@keyframes highlight {
+  0% {
+    box-shadow: 0 0 2px 2px #1c64e9;
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}

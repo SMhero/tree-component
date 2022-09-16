@@ -1,17 +1,22 @@
 body {
-  background: #ffffff;
+  background: #fafafa;
   font-family: Ubuntu, sans-serif;
-  color: #2d2d2d;
-  font-size: 14px;
-  line-height: 18px;
+  color: #000000;
   margin: 0;
   padding: 0;
 }
 
 .root {
+  align-items: center;
   display: flex;
-  height: 100vh;
   justify-content: center;
   margin: 0 auto;
-  max-width: 968px; 
+  max-width: 1200px; 
+}
+
+.wrapper {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  padding: 24px 0;
 }
