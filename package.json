@@ -1,7 +1,7 @@
 {
-  "name": "list-component",
+  "name": "tree-component",
   "version": "1.0.0",
-  "description": "Simple List component based on ReactJS",
+  "description": "Simple Tree component based on ReactJS",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.ts",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SMhero/list-component.git"
+    "url": "git+https://github.com/SMhero/tree-component.git"
   },
   "keywords": [
     "JavaScript",
@@ -23,9 +23,9 @@
   "author": "Artem Chapurin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SMhero/list-component/issues"
+    "url": "https://github.com/SMhero/tree-component/issues"
   },
-  "homepage": "https://github.com/SMhero/list-component#readme",
+  "homepage": "https://github.com/SMhero/tree-component#readme",
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/css-modules": "^1.0.2",

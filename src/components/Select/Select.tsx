@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC, ChangeEvent } from "react";
 
 import styles from "./styles.css";
 
 interface Props {
   data: string[];
   label?: string;
-  onChange: (event: React.SyntheticEvent<HTMLSelectElement>) => void;
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const Select: FC<Props> = ({ data, label, onChange }) => (

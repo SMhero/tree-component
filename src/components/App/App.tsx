@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import debounce from "lodash.debounce";
 
 import Tree from "components/Tree/Tree";
@@ -16,7 +16,7 @@ const App: FC = () => {
   const { tree, isLoading, isError, getIds } = useTree();
 
   const onInputChange = debounce(
-    ({ target }: React.SyntheticEvent<HTMLInputElement>) => {
+    ({ target }: ChangeEvent<HTMLInputElement>) => {
       const { value } = target as HTMLInputElement;
 
       setQuery(value);
@@ -24,9 +24,7 @@ const App: FC = () => {
     DEBOUNCE_TIMEOUT,
   );
 
-  const onSelectChange = ({
-    target,
-  }: React.SyntheticEvent<HTMLSelectElement>) => {
+  const onSelectChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
     setId((target as HTMLSelectElement).value);
   };
 
