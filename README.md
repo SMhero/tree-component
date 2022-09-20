@@ -20,6 +20,6 @@ The data is getting by mocked request. After request the data will store in `use
 
 The main page has tree elements:
 
-- `Search` - helps to find tree branch or node by title field
-- `Id's` - allows to you find branch or node by Id
-- `Tree` - full tree. There is also shows result of searching by id or title
+- `Search` - helps to find tree branch or node by title field.
+- `Id's` - allows to you find branch or node by Id.
+- `Tree` - full tree. There is also shows result of searching by id or title.
