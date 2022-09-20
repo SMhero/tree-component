@@ -1,22 +1,28 @@
-import React, { ChangeEvent, FC } from "react";
-import { useQuery } from "react-query";
+import { FC, useState } from "react";
+import debounce from "lodash.debounce";
 
 import Tree from "components/Tree/Tree";
 import Input from "components/Input/Input";
 import Select from "components/Select/Select";
 import useTree from "hooks/useTree";
-import { loadTree } from "api/tree";
 
 import styles from "./styles.css";
 
-const App: FC = () => {
-  const { idealizedTree, setRawTree, getTreeIds, id, setId } = useTree();
+const DEBOUNCE_TIMEOUT = 600;
 
-  const { isLoading, isError, error } = useQuery(["tree"], loadTree, {
-    onSuccess: response => setRawTree(response),
-    retry: false,
-    refetchOnWindowFocus: false,
-  });
+const App: FC = () => {
+  const [id, setId] = useState<string>("");
+  const [query, setQuery] = useState<string>("");
+  const { tree, isLoading, isError, getIds } = useTree();
+
+  const onInputChange = debounce(
+    ({ target }: React.SyntheticEvent<HTMLInputElement>) => {
+      const { value } = target as HTMLInputElement;
+
+      setQuery(value);
+    },
+    DEBOUNCE_TIMEOUT,
+  );
 
   const onSelectChange = ({
     target,
@@ -25,17 +31,21 @@ const App: FC = () => {
   };
 
   if (isError) {
-    return <span>Error: {error.message}</span>;
+    return <span>Something went wrong...</span>;
   }
 
   return (
     <main className={styles.root}>
       <div className={styles.wrapper}>
-        <Tree data={idealizedTree} isLoading={isLoading} id={id} />
-        <div>
-          <Input label="Search" onChange={() => null} />
-          <Select data={getTreeIds()} onChange={onSelectChange} />
+        <div className={styles.fields}>
+          <Input
+            label="Search"
+            onChange={onInputChange}
+            placeholder="Type title"
+          />
+          <Select label="Id's" data={getIds()} onChange={onSelectChange} />
         </div>
+        <Tree data={tree} id={id} isLoading={isLoading} query={query} />
       </div>
     </main>
   );

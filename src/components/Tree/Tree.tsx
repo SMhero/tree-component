@@ -1,46 +1,51 @@
-import { FC, useCallback } from "react";
+import { FC } from "react";
 import Branch from "components/Branch/Branch";
-import { IdealizedTree } from "hooks/useTree";
+import Node from "components/Node/Node";
+import useTree, { ITree } from "hooks/useTree";
 
 import styles from "./styles.css";
 
 interface Props {
+  data: ITree[];
   id?: string;
-  data: IdealizedTree[];
   isLoading?: boolean;
+  query?: string;
   title?: string;
 }
 
-const Tree: FC<Props> = ({ data, id, isLoading, title }) => {
-  const searchById = useCallback(
-    (node: IdealizedTree, search: string): IdealizedTree | undefined | null => {
-      if (node.id === search) {
-        return node;
+const Tree: FC<Props> = ({ data, id, isLoading, query, title }) => {
+  const { getNodeById, getNodesByQuery } = useTree();
+
+  const renderTree = () => {
+    if (query) {
+      const branchesWithQuery = getNodesByQuery(query);
+
+      if (!branchesWithQuery?.length) {
+        return <div className={styles.message}>Title not found...</div>;
       }
 
-      if (node?.children?.length) {
-        return node.children.find(node => searchById(node, search));
-      }
-
-      return null;
-    },
-    [],
-  );
-
-  const renderTree = useCallback(() => {
-    if (id) {
-      const treeWithId: IdealizedTree | undefined = data.find(node =>
-        searchById(node, id),
+      return (
+        <div className={styles.tree}>
+          {branchesWithQuery.map(item => (
+            <Branch key={item.id} data={item} level={item.level} />
+          ))}
+        </div>
       );
+    }
+
+    if (id) {
+      const nodeWithId = getNodeById(id);
+
+      if (!nodeWithId) {
+        return <div className={styles.message}>Id not found...</div>;
+      }
 
       return (
         <>
           {title && <h3 className={styles.title}>{title}</h3>}
-          {treeWithId && (
-            <div className={styles.tree}>
-              <Branch data={{ ...treeWithId, isSelected: true }} />
-            </div>
-          )}
+          <div className={styles.tree}>
+            <Node data={{ ...nodeWithId }} />
+          </div>
         </>
       );
     }
@@ -50,20 +55,21 @@ const Tree: FC<Props> = ({ data, id, isLoading, title }) => {
         {title && <h3 className={styles.title}>{title}</h3>}
         <div className={styles.tree}>
           {data.map(item => (
-            <Branch key={item.id} data={item} level={0} />
+            <Branch key={item.id} data={item} level={item.level} />
           ))}
         </div>
       </>
     );
-  }, [data, id, searchById, title]);
+  };
 
   return (
-    <div className={styles.root}>
+    <div>
       {isLoading ? (
         <div>
           <svg
             className={styles.preload}
             xmlns="http://www.w3.org/2000/svg"
+            width="200"
             viewBox="0 0 224 97"
           >
             <g fill="#ebebeb" fillRule="evenodd">
@@ -73,6 +79,7 @@ const Tree: FC<Props> = ({ data, id, isLoading, title }) => {
           <svg
             className={styles.preload}
             xmlns="http://www.w3.org/2000/svg"
+            width="200"
             viewBox="0 0 224 97"
           >
             <g fill="#ebebeb" fillRule="evenodd">

@@ -1,9 +1,10 @@
-import Node from "components/Node/Node";
-import { IdealizedTree } from "hooks/useTree";
 import { FC, useState } from "react";
 
+import Node from "components/Node/Node";
+import { ITree } from "hooks/useTree";
+
 interface Props {
-  data: IdealizedTree | undefined;
+  data: ITree;
   level?: number;
 }
 
@@ -16,11 +17,7 @@ const Branch: FC<Props> = ({ data, level = 0 }) => {
       const newLevel = level + 1;
 
       return data?.children?.map(child => (
-        <Branch
-          key={child.id}
-          data={{ ...child, isSelected }}
-          level={newLevel}
-        />
+        <Branch key={child.id} data={child} level={newLevel} />
       ));
     }
 
@@ -39,9 +36,8 @@ const Branch: FC<Props> = ({ data, level = 0 }) => {
         isSelected={isSelected}
         hasChildren={hasChildren}
         onToggle={onToggle}
-      >
-        {isSelected ? renderBranches() : null}
-      </Node>
+      />
+      {isSelected ? renderBranches() : null}
     </>
   );
 };
